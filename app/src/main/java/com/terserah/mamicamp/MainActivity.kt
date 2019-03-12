@@ -18,12 +18,12 @@ class MainActivity : AppCompatActivity() {
         TextView3.text = "Hobi"
         TextView4.text = "Laki atau Perempuan"
 
-        Button.text = "Iki Button"
+        //Button.text = "Iki Button"
 
-        Button.setOnClickListener {
+        /*Button.setOnClickListener {
             Toast.makeText(MainActivity@this, TextView1.text.toString(), Toast.LENGTH_SHORT).show()
             TextView4.text = "Mantaaab"
-        }
+        }*/
 
     }
 

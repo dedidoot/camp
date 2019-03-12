@@ -1,7 +1,7 @@
 package com.terserah.mamicamp
 
 class EmployeePojo(
-    var name: String?,
-    var age: String?,
-    var salary: String
+    var employeeName: String? = null,
+    var employeeAge: String? = null,
+    var employeeSalary: String? = null
 )
