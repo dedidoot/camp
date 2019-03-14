@@ -7,6 +7,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class EmployeePojo(
     @SerializedName("employee_name") var employeeName: String? = null,
-    var employeeAge: String? = null,
-    var employeeSalary: String? = null
+    @SerializedName("employee_age") var employeeAge: String? = null,
+    @SerializedName("employee_salary") var employeeSalary: String? = null
 ) : Parcelable

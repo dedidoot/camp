@@ -1,8 +1,10 @@
 package com.terserah.mamicamp
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.httpDelete
 import com.github.kittinunf.fuel.httpGet
@@ -21,16 +23,7 @@ class EmployeeListActivity : AppCompatActivity() {
         adapterBebas = EmployeeAdapter(this, datanya)
         recyclerEmployee.adapter = adapterBebas
 
-        for (i in 0 until 100) {
-            datanya.add(
-                EmployeePojo(
-                    "Nama $i",
-                    "umur $i", "Salary $i"
-                )
-            )
-        }
 
-        adapterBebas?.notifyDataSetChanged()
 
         getData()
 
@@ -42,14 +35,36 @@ class EmployeeListActivity : AppCompatActivity() {
             .httpGet()
             .responseString { request, response, result ->
 
-                val listType = object : TypeToken<ArrayList<EmployeePojo>>() {
-                }.type
+                Log.e("responsex", "${datanya.size}")
+                loadingBro.visibility = View.GONE
+                Log.e("responsexx", "${datanya.size}")
+                showData(result.component1())
 
-                datanya = Gson().fromJson(result.component1(), listType)
 
-                Log.e("response", "${datanya.size}")
-                Log.e("response", "${datanya[0].employeeName}")
             }
+    }
+
+    private fun showData(result: String?) {
+
+
+        val listType = object : TypeToken<ArrayList<EmployeePojo>>() {
+        }.type
+
+        datanya = Gson().fromJson(result, listType)
+        Log.e("response", "${datanya.size}")
+
+        for (i in 0 until 10) {
+            Log.e("response", "${datanya[i].employeeName}")
+            adapterBebas?.addData(
+                EmployeePojo(
+                    datanya[i].employeeName,
+                    datanya[i].employeeAge,
+                    datanya[i].employeeSalary
+                )
+            )
+        }
+        adapterBebas?.notifyDataSetChanged()
+
     }
 
 }

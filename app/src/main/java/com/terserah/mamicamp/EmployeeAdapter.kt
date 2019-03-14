@@ -23,11 +23,15 @@ class EmployeeAdapter(val activity: Activity, val data: MutableList<EmployeePojo
         return data.size
     }
 
+    fun addData(a : EmployeePojo){
+        data.add(a)
+    }
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(employeePojo : EmployeePojo ) {
-            itemView.TextView1.text = employeePojo.employeeName
-            itemView.TextView2.text = employeePojo.employeeAge
-            itemView.TextView3.text = employeePojo.employeeSalary
+            itemView.TextView1.text = "${employeePojo.employeeName}"
+            itemView.TextView2.text = "${employeePojo.employeeAge}"
+            itemView.TextView3.text = "${employeePojo.employeeSalary}"
             itemView.ButtonList.setOnClickListener {
                 Log.e("datane name", "${employeePojo.employeeName}")
                 Log.e("datane salary", "${employeePojo.employeeSalary}")
