@@ -15,15 +15,13 @@ import kotlinx.android.synthetic.main.layout_employe_list.*
 class EmployeeListActivity : AppCompatActivity() {
 
     var adapterBebas: EmployeeAdapter? = null
-    var datanya: MutableList<EmployeePojo> = arrayListOf()
+    var datanya: ArrayList<EmployeePojo> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_employe_list)
         adapterBebas = EmployeeAdapter(this, datanya)
         recyclerEmployee.adapter = adapterBebas
-
-
 
         getData()
 
@@ -34,10 +32,6 @@ class EmployeeListActivity : AppCompatActivity() {
         baseUrlGet
             .httpGet()
             .responseString { request, response, result ->
-
-                Log.e("responsex", "${datanya.size}")
-                loadingBro.visibility = View.GONE
-                Log.e("responsexx", "${datanya.size}")
                 showData(result.component1())
 
 
@@ -53,7 +47,7 @@ class EmployeeListActivity : AppCompatActivity() {
         datanya = Gson().fromJson(result, listType)
         Log.e("response", "${datanya.size}")
 
-        for (i in 0 until 10) {
+        for (i in 0 until datanya.size) {
             Log.e("response", "${datanya[i].employeeName}")
             adapterBebas?.addData(
                 EmployeePojo(
@@ -63,7 +57,9 @@ class EmployeeListActivity : AppCompatActivity() {
                 )
             )
         }
+
         adapterBebas?.notifyDataSetChanged()
+
 
     }
 

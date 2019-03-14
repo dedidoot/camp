@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.layout_main_activity_constraint.view.*
 
-class EmployeeAdapter(val activity: Activity, val data: MutableList<EmployeePojo>) :
+class EmployeeAdapter(val activity: Activity, val data: ArrayList<EmployeePojo>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
