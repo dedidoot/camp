@@ -35,19 +35,9 @@ class EmployeeListActivity : AppCompatActivity() {
         val listType = object : TypeToken<ArrayList<EmployeePojo>>() {
         }.type
 
-        datanya = Gson().fromJson(result, listType)
+        datanya.addAll(Gson().fromJson(result, listType))
+        datanya.reverse()
         Log.e("response", "${datanya.size}")
-
-        for (i in 0 until datanya.size) {
-            Log.e("response", "${datanya[i].employeeName}")
-            adapterBebas?.addData(
-                EmployeePojo(
-                    datanya[i].employeeName,
-                    datanya[i].employeeAge,
-                    datanya[i].employeeSalary
-                )
-            )
-        }
 
         recyclerEmployee.postDelayed({
             adapterBebas?.notifyDataSetChanged()
