@@ -37,7 +37,7 @@ class EmployeeListActivity : AppCompatActivity() {
 
         datanya.addAll(Gson().fromJson(result, listType))
         datanya.reverse()
-        Log.e("response", "${datanya.size}")
+        Log.e("response", "${datanya.size}")///
 
         recyclerEmployee.postDelayed({
             adapterBebas?.notifyDataSetChanged()
