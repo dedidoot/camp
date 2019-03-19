@@ -7,6 +7,7 @@ import android.view.View
 import com.github.kittinunf.fuel.httpGet
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.terserah.mamicamp.pojo.EmployeePojo
 import kotlinx.android.synthetic.main.layout_employe_list.*
 
 class EmployeeListActivity : AppCompatActivity() {

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.layout_main_activity_constraint.*
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_main_activity_constraint)
         Log.e("onCreate","onCreate")
+        Timber.d("This is from timber")
 
         TextView1.text = "Nama"
         TextView2.text = "Kelas"

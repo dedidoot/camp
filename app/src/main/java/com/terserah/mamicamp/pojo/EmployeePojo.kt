@@ -1,4 +1,4 @@
-package com.terserah.mamicamp
+package com.terserah.mamicamp.pojo
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

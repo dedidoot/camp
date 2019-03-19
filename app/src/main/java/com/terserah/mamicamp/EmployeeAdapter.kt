@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.layout_main_activity_constraint.view.*
 import com.bumptech.glide.Glide
-
+import com.terserah.mamicamp.pojo.EmployeePojo
 
 
 class EmployeeAdapter(val activity: Activity, val data: ArrayList<EmployeePojo>) :
@@ -31,7 +31,7 @@ class EmployeeAdapter(val activity: Activity, val data: ArrayList<EmployeePojo>)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(employeePojo : EmployeePojo ) {
+        fun bind(employeePojo : EmployeePojo) {
             val url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwshxYpeEpWXzlZmJeUYHL0G-avK5txosu7pND_md-o_mY0n3a"
 
             Glide

@@ -3,7 +3,12 @@ package com.terserah.mamicamp
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.widget.Toast
+import com.terserah.mamicamp.network.MamiCampUrl
+import com.terserah.mamicamp.pojo.EmployeSenderPojo
 import kotlinx.android.synthetic.main.layout_form.*
+import timber.log.Timber
 
 /*
 * 1. Buat Pojo Employee
@@ -25,7 +30,30 @@ class FormActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+        umurEdittext.setOnClickListener {
+            validateForm()
+        }
     }
 
+    private fun validateForm() {
+
+        mainProgressBar.visibility = View.VISIBLE
+
+        val name = editText.text.toString()
+        val salary = editText3.text.toString()
+        val age = umurEdittext.text.toString()
+
+        if (name.length < 3) {
+            Toast.makeText(this, "Nama Anda terlalu singkat", Toast.LENGTH_SHORT).show()
+            dismissLoading()
+        } else {
+            val employePojo = EmployeSenderPojo(name, salary, age)
+            MamiCampUrl.sendEmployee(employePojo)
+            dismissLoading()
+        }
+    }
+
+    private fun dismissLoading() {
+        mainProgressBar.visibility = View.GONE
+    }
 }
