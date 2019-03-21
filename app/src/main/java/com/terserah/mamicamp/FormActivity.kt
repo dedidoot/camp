@@ -3,8 +3,10 @@ package com.terserah.mamicamp
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.bugsnag.android.Bugsnag
 import com.terserah.mamicamp.network.MamiCampUrl
 import com.terserah.mamicamp.pojo.EmployeSenderPojo
 import kotlinx.android.synthetic.main.layout_form.*
@@ -30,7 +32,7 @@ class FormActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        umurEdittext.setOnClickListener {
+        button2.setOnClickListener {
             validateForm()
         }
     }
@@ -43,17 +45,32 @@ class FormActivity : AppCompatActivity() {
         val salary = editText3.text.toString()
         val age = umurEdittext.text.toString()
 
+        var checkA = "Length"
+
         if (name.length < 3) {
             Toast.makeText(this, "Nama Anda terlalu singkat", Toast.LENGTH_SHORT).show()
             dismissLoading()
         } else {
             val employePojo = EmployeSenderPojo(name, salary, age)
-            MamiCampUrl.sendEmployee(employePojo)
+            Timber.d("Send Pojo $employePojo")
+
+            MamiCampUrl.sendEmployee(employePojo)?.let {
+                Log.i("FormActivity", "Response are $it")
+            }
             dismissLoading()
         }
+
+        try {
+            checkA.get(100)
+        } catch (exception: Throwable) {
+            Bugsnag.notify(exception)
+        }
+
     }
 
     private fun dismissLoading() {
-        mainProgressBar.visibility = View.GONE
+        mainProgressBar.postDelayed({
+                mainProgressBar.visibility = View.GONE
+            }, 2000)
     }
 }

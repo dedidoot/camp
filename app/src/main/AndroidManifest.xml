@@ -13,6 +13,11 @@
             android:supportsRtl="true"
             android:usesCleartextTraffic="true"
             android:theme="@style/AppTheme">
+
+        <meta-data
+                android:name="com.bugsnag.android.API_KEY"
+                android:value="de243c24b99bc4b84549bc94e3d06064"/>
+
         <activity
                 android:name=".FormActivity"
                 android:label="@string/app_name">
